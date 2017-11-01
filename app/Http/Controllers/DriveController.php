@@ -18,7 +18,7 @@ use PropertyStream\Facades\TW;
 class DriveController extends Controller
 {
     public $client, $token, $service, $folder_id, $folder;
-    // returns the login page with the Google Auth
+    // // returns the login page with the Google Auth
     public function index(Googl $googl, Request $request)
     {
     // updates all projects
@@ -28,6 +28,7 @@ class DriveController extends Controller
             if ($request->has('code') || session('user.token')) {
                 if ($request->has('code') && !session('user.token')) {
                     $client->authenticate($request->input('code'));
+		    // dd($request->input('code'));
                     $this->token = $client->getAccessToken();
                     session(['user' => ['token' => $this->token]]);
                     $client->setAccessToken(session('user.token'));
@@ -57,11 +58,10 @@ class DriveController extends Controller
                     return view('home', compact('projects', 'folders'));
                 }
             } else {
-		something went wrong
+		// something went wrong
                 return redirect('/');
             }
         }
-
     }
 
     //redirects to the login page
