@@ -73,6 +73,7 @@ class RegisterController extends Controller
     }
 
 
+    // redirects to socialite for the login
     public function google()
     {
         return Socialite::driver('google')->redirect();

@@ -1,4 +1,5 @@
 <?php
+/* This class manages Google OAuth and Google Drive Scopes*/
 namespace App;
 
 class Googl

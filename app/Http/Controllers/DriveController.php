@@ -57,7 +57,7 @@ class DriveController extends Controller
                     return view('home', compact('projects', 'folders'));
                 }
             } else {
-		// something went wrong
+		something went wrong
                 return redirect('/');
             }
         }

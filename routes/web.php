@@ -1,14 +1,18 @@
 <?php
 use Illuminate\Support\Facades\Mail;
 
+/* Users login and registration */
 //if authorised redirects to the homepage page
 Route::get('/', 'DriveController@login');
 // if not authorised yet, returns to the login page
 Route::any('/home', 'DriveController@index');
-
+// register and login routes
 Auth::routes();
 
+/* Admin */
+//redirects to the admin control panel (home page)
 Route::get('/admin/cpanel', 'AdminController@cpanel');
+// add a new project to a user
 Route::post('/admin/project', 'AdminController@projectStore');
 Route::delete('/admin/project', 'AdminController@projectDestroy');
 Route::post('/admin/folder', 'AdminController@folderStore');

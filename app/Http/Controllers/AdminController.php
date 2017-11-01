@@ -25,10 +25,12 @@ class AdminController extends Controller
         $this->middleware('admin');
     }
 
+    // returns the control panel with the users list
     public function cpanel()
     {
         $users = User::where('id', '>', 0)->orderBy('id', 'desc')->get();
-//        TW::updateAll();
+	// updates all the projects and tasks
+	// TW::updateAll();
         return view('admin.controlPanel', compact('users'));
 
     }
@@ -71,17 +73,17 @@ class AdminController extends Controller
 
     public function show($id)
     {
-//        show user details
-
+	// show user details
         $user = User::where('id', $id)->first();
         $projects = Project::where('fk_user', $id)->get();
         $folders = Folder::where('fk_user', $id)->get();
-//        update projects, tasklists and tasks
+	// update projects, tasklists and tasks
         TW::updateAll();
         return view('admin.user', compact('user', 'projects', 'folders'));
 
     }
 
+    // this function assigns a project to a specific user
     public function projectStore(Request $request)
     {
         $this->validate($request, [
@@ -92,7 +94,7 @@ class AdminController extends Controller
         if (Project::where('project_id', $project_id)->count()) {
             return redirect('/admin/user/' . $userid)->with('error', 'project already existing');
         } else {
-//            check if project exists
+	    // checks if project exists
             $msg = TW::getProjectName($project_id);
             if (isset($msg['error'])) {
                 return redirect('/admin/user/' . $userid)->with('error', 'project does not exist');
@@ -101,17 +103,14 @@ class AdminController extends Controller
             $project->fk_user = $userid;
             $project->project_id = $project_id;
             $project->save();
-//        retrieve the tasks and store it into the DB
+	    // retrieves the tasks and store it into the DB
             TW::getTasks($request->project_id, $userid);
-//        retrieve the tasklists and store it into the DB
+	    // retrieves the tasklists and store it into the DB
             TW::getTasklists($request->project_id, $userid);
-//        update the name of the projects
+	    // updates the name of the projects
             TW::updateProjectNames();
-
             return redirect('/admin/user/' . $userid);
         }
-//        return redirect('/admin/user/' . $userid);
-
     }
 
     public static function updateAll()
