@@ -1,0 +1,10 @@
+/node_modules
+/vendor
+/storage
+/.idea
+/Foobar
+.env
+Homestead.json
+Homestead.yaml
+.DS_Store
+
