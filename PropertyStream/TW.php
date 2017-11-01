@@ -45,7 +45,7 @@ class TW
     public function getProjectName($project_id)
     {
         $client = new Client();
-        $res = $client->request('GET', 'https://22group.teamwork.com/projects/' . $project_id . '/tasks.json?includeCompletedTasks=true&getSubTasks=false', [
+        $res = $client->request('GET', 'https://gabrielesoldati.eu.teamwork.com/projects/' . $project_id . '/tasks.json?includeCompletedTasks=true&getSubTasks=false', [
             'auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
         $content = $res->getBody()->getContents();
         $json = json_decode($content, true);
@@ -64,7 +64,7 @@ class TW
     public static function updateProjectNames()
     {
         $client = new Client();
-        $res = $client->request('GET', 'https://22group.teamwork.com/projects.json', [
+        $res = $client->request('GET', 'https://gabrielesoldati.eu.teamwork.com/projects.json', [
             'auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
 
         $content = $res->getBody()->getContents();
@@ -87,7 +87,7 @@ class TW
     public function getTasklists($project_id, $user_id)
     {
         $client = new Client();
-        $res = $client->request('GET', 'https://22group.teamwork.com/projects/' . $project_id . '/tasklists.json', [
+        $res = $client->request('GET', 'https://gabrielesoldati.eu.teamwork.com/projects/' . $project_id . '/tasklists.json', [
             'auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
         $content = $res->getBody()->getContents();
         $json = json_decode($content, true);
@@ -131,7 +131,7 @@ class TW
     {
 
         $client = new Client();
-        $res = $client->request('GET', 'https://22group.teamwork.com/projects/' . $project_id . '/tasks.json?includeCompletedTasks=true&getSubTasks=false', [
+        $res = $client->request('GET', 'https://gabrielesoldati.eu.teamwork.com/projects/' . $project_id . '/tasks.json?includeCompletedTasks=true&getSubTasks=false', [
             'auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
         $content = $res->getBody()->getContents();
         $json = json_decode($content, true);
@@ -241,7 +241,7 @@ class TW
     function getUserId()
     {
         $client = new Client();
-        $res = $client->request('GET', 'https://22group.teamwork.com/companies/26078/people.json',
+        $res = $client->request('GET', 'https://gabrielesoldati.eu.teamwork.com/companies/26078/people.json',
             ['auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]
         );
         $content = $res->getBody()->getContents();
@@ -261,7 +261,7 @@ class TW
     public function MarkTaskUncompleted($task_id)
     {
         $client = new Client();
-        $res = $client->request('PUT', 'https://22group.teamwork.com/tasks/' . $task_id . '/uncomplete.json', ['auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
+        $res = $client->request('PUT', 'https://gabrielesoldati.eu.teamwork.com/tasks/' . $task_id . '/uncomplete.json', ['auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
         $content = $res->getBody()->getContents();
         $json = json_decode($content, true);
         var_dump($json);
@@ -280,7 +280,7 @@ class TW
     public function MarkTaskCompleted($task_id)
     {
         $client = new Client();
-        $res = $client->request('PUT', 'https://22group.teamwork.com/tasks/' . $task_id . '/complete.json', ['auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
+        $res = $client->request('PUT', 'https://gabrielesoldati.eu.teamwork.com/tasks/' . $task_id . '/complete.json', ['auth' => [env('TEAMWORK_PASSWORD'), 'xxx']]);
         $content = $res->getBody()->getContents();
         $json = json_decode($content, true);
         var_dump($json);

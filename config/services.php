@@ -36,9 +36,14 @@ return [
     ],
 
     'google' => [
-        'client_id' => '839070645315-13p0oab3sfkjasau09t78eaqanq0i9ur.apps.googleusercontent.com',
-        'client_secret' => 'tQ-YKHdaEhbpdZ5-DR0a6WUo',
-        'redirect' => 'http://propstream.link/auth/google/callback',
+	'client_id' => env('GOOGLE_CLIENT_ID'),
+	'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+	'redirect' => env('GOOGLE_REDIRECT_URL'),
     ],
+    // 'google' => [
+    //     'client_id' => '839070645315-13p0oab3sfkjasau09t78eaqanq0i9ur.apps.googleusercontent.com',
+    //     'client_secret' => 'tQ-YKHdaEhbpdZ5-DR0a6WUo',
+    //     'redirect' => 'http://propstream.link/auth/google/callback',
+    // ],
 
 ];

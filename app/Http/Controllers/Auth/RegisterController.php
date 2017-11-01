@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\TempUser;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Laravel\Socialite\Facades\Socialite as Socialite;
 use PropertyStream\Facades\TW;
+use Debugbar;
 
 class RegisterController extends Controller
 {
@@ -76,18 +78,20 @@ class RegisterController extends Controller
     // redirects to socialite for the login
     public function google()
     {
+	// redirects the user to the auth provider (Google)
         return Socialite::driver('google')->redirect();
     }
 
-    public function googleCallback()
+    public function googleCallback(Request $request)
     {
+	    
+	// retrieve Google info using Socialite
         try {
-            $google = Socialite::driver('google')->user();
-//            var_dump($google);
+            $google = Socialite::driver('google')->stateless()->user();
         } catch (Exception $e) {
             return redirect('/');
         }
-
+	// gets the user's data from the database
         $user = User::where('email', $google->getEmail())->first();
         $tw_id = NULL;
         if ($user) {
@@ -101,7 +105,7 @@ class RegisterController extends Controller
 //            checks if user's info are stored in the db
             $check = User::where('google_id', $google->getId())->first();
             if (!$check) {
-//            first login => retriving info
+		// it means it is the first login => retriving info
                 $name = ($google->user['name']['givenName']);
                 $surname = ($google->user['name']['familyName']);
                 $user->name = $name;
