@@ -1,8 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Mail;
 
-//Route::get('/', function () { return view('welcome'); });
+//if authorised redirects to the homepage page
 Route::get('/', 'DriveController@login');
+// if not authorised yet, returns to the login page
 Route::any('/home', 'DriveController@index');
 
 Auth::routes();

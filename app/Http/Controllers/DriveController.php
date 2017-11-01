@@ -18,10 +18,10 @@ use PropertyStream\Facades\TW;
 class DriveController extends Controller
 {
     public $client, $token, $service, $folder_id, $folder;
-
+    // returns the login page with the Google Auth
     public function index(Googl $googl, Request $request)
     {
-//        update all projects
+    // updates all projects
         TW::updateAll();
         if (!session('user.token')) {
             $client = $googl->client();
@@ -34,6 +34,7 @@ class DriveController extends Controller
                 } else {
                     $client->setAccessToken(session('user.token'));
                 }
+		// redirects to the admin control panel or to the user homepage
                 if (null === Auth::user()->isAdmin()) {
                     return redirect('/home');
                 } else {
@@ -52,15 +53,18 @@ class DriveController extends Controller
                     $projects = Project::where('fk_user', $userId)->get();
                     $folders = Folder::where('fk_user', $userId)->get();
 
+		    //returns the user's hompage view with all his projects
                     return view('home', compact('projects', 'folders'));
                 }
             } else {
+		// something went wrong
                 return redirect('/');
             }
         }
 
     }
 
+    //redirects to the login page
     public function login()
     {
         if (Auth::user()) {

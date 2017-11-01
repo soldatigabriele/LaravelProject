@@ -17,7 +17,7 @@ use GuzzleHttp\Client as Client;
 use Auth;
 use PropertyStream\Facades\TW;
 use Session;
-Debugbar::enable();
+
 class AdminController extends Controller
 {
     public function __construct()
