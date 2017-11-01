@@ -83,11 +83,12 @@ class RegisterController extends Controller
     }
 
     public function googleCallback(Request $request)
-    {
-	    
+    {	
+
 	// retrieve Google info using Socialite
         try {
             $google = Socialite::driver('google')->stateless()->user();
+	    // dd($google);
         } catch (Exception $e) {
             return redirect('/');
         }
@@ -137,7 +138,9 @@ class RegisterController extends Controller
             ]);
         }
         auth()->login($user);
-        return redirect()->intended('/');
+	// dd($google);
+        return redirect('/');
+        // return redirect()->intended('/');
 
     }
 

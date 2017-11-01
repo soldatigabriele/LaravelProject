@@ -5,6 +5,7 @@
             background: #f5f5f5;
         }
     </style>
+<meta name="google-site-verification" content="IsJdaGuo7EScSroqW8BpJquExGaQAjBliZpn0goMvUs" />
 @endsection
 @section('content')
     <div class="container">

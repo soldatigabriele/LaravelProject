@@ -125,7 +125,7 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="user_id" value="{{$user->id}}">
                         <div class="col-md-4">
-                            <input type="text" name="project_id" maxlength="6" class="form-control"
+                            <input type="text" name="project_id" maxlength="10" class="form-control"
                                    style="width:110px">
                         </div>
                         <div class="col-md-4">

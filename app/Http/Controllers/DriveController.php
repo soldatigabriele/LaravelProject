@@ -22,6 +22,7 @@ class DriveController extends Controller
     public function index(Googl $googl, Request $request)
     {
     // updates all projects
+        return redirect('/admin/cpanel');
         TW::updateAll();
         if (!session('user.token')) {
             $client = $googl->client();
@@ -42,25 +43,26 @@ class DriveController extends Controller
                     return redirect('/admin/cpanel');
                 }
             } else {
-                $auth_url = $client->createAuthUrl();
-                return redirect($auth_url);
+		    $auth_url = $client->createAuthUrl();
+		    /* auth_url = https://accounts.google.com/o/oauth2/auth? */
+                    return redirect($auth_url);
             }
-        } else {
-            if (Auth::user()) {
-                if (Auth::user()->isAdmin()) {
-                    return redirect('/admin/cpanel');
-                } else {
-                    $userId = Auth::user()->id;
-                    $projects = Project::where('fk_user', $userId)->get();
-                    $folders = Folder::where('fk_user', $userId)->get();
-
-		    //returns the user's hompage view with all his projects
-                    return view('home', compact('projects', 'folders'));
-                }
-            } else {
-		// something went wrong
-                return redirect('/');
-            }
+        // } else {
+        //     if (Auth::user()) {
+        //         if (Auth::user()->isAdmin()) {
+        //             return redirect('/admin/cpanel');
+        //         } else {
+        //             $userId = Auth::user()->id;
+        //             $projects = Project::where('fk_user', $userId)->get();
+        //             $folders = Folder::where('fk_user', $userId)->get();
+        //
+	// 	    //returns the user's hompage view with all his projects
+        //             return view('home', compact('projects', 'folders'));
+        //         }
+        //     } else {
+	// 	// something went wrong
+        //         return redirect('/');
+        //     }
         }
     }
 
@@ -68,8 +70,10 @@ class DriveController extends Controller
     public function login()
     {
         if (Auth::user()) {
+	    // authorised -> create and show the homepage view
             return redirect('/home');
-        } else {
+	} else {
+    	    // show the login home view
             return view('home');
         }
     }

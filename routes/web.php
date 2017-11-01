@@ -59,8 +59,6 @@ Route::get('/gocardless/new-customer', 'GoCardlessController@setupNewCustomer');
 Route::get('/gocardless/store-customer', 'GoCardlessController@storeCustomer');
 Route::get('/gocardless/make-payment', 'GoCardlessController@confirmPayment');
 
-//updates the tasklists visible to the user
-
 //Route::any('/test','TestController@test');
 //Route::any('/test0', 'TestController@test0');
 //Route::any('/test1', 'TestController@test1');
@@ -68,11 +66,14 @@ Route::get('/gocardless/make-payment', 'GoCardlessController@confirmPayment');
 //Route::any('/test3', 'TestController@test3');
 //Route::any('/test4', 'TestController@test4');
 //Route::any('/test5', 'TestController@test5');
-Route::any('/test8', 'TestController@test8');
-Route::any('/test9', 'TestController@test9');
+// Route::any('/test8', 'TestController@test8');
+// Route::any('/test9', 'TestController@test9');
+
+//updates the tasklists visible to the user
 Route::post('/updateNames', 'AdminController@updateNames');
 //Route::get('/admin/control', ['middleware'=>'admin', function(){return view('admin.controlPanel');}]);
 
+// Mail Controller
 //Route::get('/mail','MailController@contact');
 
 
